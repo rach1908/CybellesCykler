@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Business;
+using Entities;
 namespace CybellesCykler
 {
     /// <summary>
@@ -22,6 +24,8 @@ namespace CybellesCykler
         public MainWindow()
         {
             InitializeComponent();
+            DataController dc = new DataController();
+            dc.test();
         }
 
         private void BtnShowRentees_Click(object sender, RoutedEventArgs e)

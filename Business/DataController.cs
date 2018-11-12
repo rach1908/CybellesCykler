@@ -11,7 +11,11 @@ namespace Business
 {
     public class DataController
     {
-        private DBHandler db = new DBHandler(@"Data Source = (localdb)\MSSQLLocalDB; Initial Catalog = CybellesCyklerDB; Integrated Security = True; Connect Timeout = 30; Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False")
+        private DBHandler db = new DBHandler(@"Data Source = (localdb)\MSSQLLocalDB; Initial Catalog = CybellesCyklerDB; Integrated Security = True; Connect Timeout = 30; Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
         
+        public void test()
+        {
+            Rentee r = db.GetRentee(3);
+        }
     }
 }
