@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataAccess
+namespace Entities
 {
-    public class Class1
+    interface IPersistable
     {
+        int id { get; set; }
     }
 }

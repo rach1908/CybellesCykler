@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Entities
 {
-    class Bike
+    class Bike : IPersistable
     {
         private double pricePerDay;
         private string bikeDescription;

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Entities
 {
-    public class Rentee
+    public class Rentee : IPersistable
     {
         private string name;
         private string adress;
@@ -57,5 +57,6 @@ namespace Entities
             set { name = value; }
         }
 
+        int IPersistable.id { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
     }
 }

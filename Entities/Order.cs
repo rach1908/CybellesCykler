@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Entities
 {
-    class Order
+    class Order : IPersistable
     {
         private Bike bike;
         private Rentee rentee;
@@ -57,5 +57,6 @@ namespace Entities
             set { bike = value; }
         }
 
+        int IPersistable.id { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
     }
 }
