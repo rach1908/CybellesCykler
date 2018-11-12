@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Entities
 {
-    public class Class1
+    enum BikeKind
     {
+        Mountain, City, Tandem, Unicycle, PennyFarthing, PediCab
     }
 }
