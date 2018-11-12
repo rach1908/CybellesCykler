@@ -1,0 +1,21 @@
+Create table Bikes(
+BikeDescription varchar(255) not null,
+PricePerDay decimal not null,
+ID int primary key identity(1,1) not null
+);
+
+create table Renters(
+ID int primary key identity(1,1) not null,
+Name varchar(255) not null,
+PhoneNumber varchar(255) not null,
+PhysAddress varchar(255),
+RegisterDate Date
+);
+
+create table Orders(
+BikeID int foreign key references Bikes(ID) not null,
+DeliveryDate date,
+OrderDate date,
+OrderID int primary key identity(1,1) not null,
+RenteeID int foreign key references Renters(ID) not null
+);
