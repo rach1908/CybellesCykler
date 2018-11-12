@@ -13,7 +13,45 @@ namespace DataAccess
         public DBHandler(string conString) : base(conString)
         {
         }
+        public List<Rentee> AllRenters()
+        {
+            List<Rentee> li = new List<Rentee>();
+            DataSet ds = new DataSet();
+            ds = ExecuteQuery("select * from Renters");
+            foreach (DataRow r in ds.Tables[0].Rows)
+            {
+                li.Add(new Rentee((int)r["ID"], (DateTime)r["RegisterDate"], (string)r["PhoneNumber"], (string)r["PhysAddress"], (string)r["Name"]));
+            }
+            return li;
+        }
 
+        public List<Bike> AllBikes()
+        {
+            List<Bike> li = new List<Bike>();
+            DataSet ds = new DataSet();
+            ds = ExecuteQuery("select * from Bikes");
+            foreach (DataRow r in ds.Tables[0].Rows)
+            {
+                li.Add(new Bike((int)r["ID"], (string)r[";BikeDescription"], (decimal)r["PricePerDay"]));
+            }
+            return li;
+        }
+
+        public List<Order> AllOrders()
+        {
+            List<Order> li = new List<Order>();
+            List<Rentee> renters = AllRenters();
+            List<Bike> bikes = AllBikes();
+            DataSet ds = new DataSet();
+            ds = ExecuteQuery("select * from Orders");
+            foreach (DataRow r in ds.Tables[0].Rows)
+            {
+                Rentee ren = renters.Find(p => p.Id == (int)r["RenteeID"]);
+                Bike b = bikes.Find(p => p.Id == (int)r["BikeID"]);
+                li.Add(new Order((int)r["OrderID"], (DateTime)r["DeliveryDate"], (DateTime)r["RentDate"], ren, b));
+            }
+            return li;
+        }
         public Rentee GetRentee(int id)
         {
             DataSet ds = new DataSet();
@@ -99,7 +137,7 @@ namespace DataAccess
         public int UpdateOrder(Order order)
         {
             return ExecuteNonQuery($"update Orders set BikeID = '{order.Bike.Id}', DeliveryDate = '{order.DeliveryDate}', " +
-                $"OrderDate = '{order.RentDate}, RenteeID = '{order.Rentee.Id}'" +
+                $"OrderDate = '{order.RentDate}, RenteeID = '{order.Rentee.Id}' " +
                 $"Where ID = {order.Id}");
         }
     }

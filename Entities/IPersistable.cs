@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Entities
 {
-    interface IPersistable
+    public interface IPersistable
     {
         int id { get; set; }
     }
