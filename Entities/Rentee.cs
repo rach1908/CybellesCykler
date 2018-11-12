@@ -9,20 +9,20 @@ namespace Entities
     public class Rentee : IPersistable
     {
         private string name;
-        private string adress;
+        private string address;
         private string phoneNumber;
         private DateTime registerDate;
         private int id;
 
-        public Rentee(DateTime registerDate, string phoneNumber, string adress, string name)
+        public Rentee(DateTime registerDate, string phoneNumber, string address, string name)
         {
             RegisterDate = registerDate;
             PhoneNumber = phoneNumber;
-            Adress = adress;
+            Address = address;
             Name = name;
         }
 
-        public Rentee(int id, DateTime registerDate, string phoneNumber, string adress, string name) : this(registerDate, phoneNumber, adress, name)
+        public Rentee(int id, DateTime registerDate, string phoneNumber, string address, string name) : this(registerDate, phoneNumber, address, name)
         {
             Id = id;
         }
@@ -45,10 +45,10 @@ namespace Entities
             set { phoneNumber = value; }
         }
 
-        public string Adress
+        public string Address
         {
-            get { return adress; }
-            set { adress = value; }
+            get { return address; }
+            set { address = value; }
         }
 
         public string Name
@@ -57,6 +57,10 @@ namespace Entities
             set { name = value; }
         }
 
+        public override string ToString()
+        {
+            return Name + ", adresse: " + Address + ", tlf: " + PhoneNumber;
+        }
         int IPersistable.id { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
     }
 }

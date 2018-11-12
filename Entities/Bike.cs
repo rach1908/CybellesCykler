@@ -6,21 +6,21 @@ using System.Threading.Tasks;
 
 namespace Entities
 {
-    class Bike : IPersistable
+    public class Bike : IPersistable
     {
-        private double pricePerDay;
+        private decimal pricePerDay;
         private string bikeDescription;
         private int id;
         private BikeKind kind;
 
 
-        public Bike(string bikeDescription, double pricePerDay)
+        public Bike(string bikeDescription, decimal pricePerDay)
         {
             BikeDescription = bikeDescription;
             PricePerDay = pricePerDay;
         }
 
-        public Bike(int id, string bikeDescription, double pricePerDay) : this(bikeDescription, pricePerDay)
+        public Bike(int id, string bikeDescription, decimal pricePerDay) : this(bikeDescription, pricePerDay)
         {
             Id = id;
         }
@@ -36,17 +36,20 @@ namespace Entities
             set { id = value; }
         }
 
+        public int ID { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
         public string BikeDescription
         {
             get { return bikeDescription; }
             set { bikeDescription = value; }
         }
 
-        public double PricePerDay
+        public decimal PricePerDay
         {
             get { return pricePerDay; }
             set { pricePerDay = value; }
         }
 
+        int IPersistable.id { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
     }
 }

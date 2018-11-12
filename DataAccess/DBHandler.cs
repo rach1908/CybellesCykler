@@ -8,7 +8,7 @@ using Entities;
 
 namespace DataAccess
 {
-    class DBHandler : CommonDB
+    public class DBHandler : CommonDB
     {
         public DBHandler(string conString) : base(conString)
         {

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Entities
 {
-    class Order : IPersistable
+    public class Order : IPersistable
     {
         private Bike bike;
         private Rentee rentee;
@@ -57,6 +57,11 @@ namespace Entities
             set { bike = value; }
         }
 
+        public decimal GetPrice()
+        {
+            decimal range = decimal.Parse(((deliveryDate - rentDate).TotalDays).ToString());
+            return range * Bike.PricePerDay;
+        }
         int IPersistable.id { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
     }
 }
