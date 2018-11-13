@@ -24,6 +24,7 @@ namespace DataAccess
             using (SqlConnection con = new SqlConnection(connectionString))
             using (SqlCommand com = new SqlCommand(query, con))
             {
+                con.Open();
                 AffectedRows = com.ExecuteNonQuery();
             }
 

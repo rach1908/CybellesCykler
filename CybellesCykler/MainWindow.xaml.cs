@@ -21,24 +21,14 @@ namespace CybellesCykler
     /// </summary>
     public partial class MainWindow : Window
     {
+        private bool RentersSelected = false;
+        private bool BikesSelected = false;
         private DataController dc = new DataController(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=CybellesCyklerDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
         public MainWindow()
         {
             InitializeComponent();
         }
-
-        private void BtnShowRentees_Click(object sender, RoutedEventArgs e)
-        {
-            List<IPersistable> li = dc.GetEntities("RENTEE");
-            List<Rentee> renters = new List<Rentee>();
-            foreach (IPersistable persistable in li)
-            {
-                renters.Add(persistable as Rentee);
-            }
-            DtgSelected.ItemsSource = renters;
-        }
-
-        private void BtnShowBikes_Click(object sender, RoutedEventArgs e)
+        private List<Bike> GenerateBikeList()
         {
             List<IPersistable> li = dc.GetEntities("BIKE");
             List<Bike> bikes = new List<Bike>();
@@ -46,22 +36,57 @@ namespace CybellesCykler
             {
                 bikes.Add(persistable as Bike);
             }
-            DtgSelected.ItemsSource = bikes;
+            return bikes;
+        }
+
+        private List<Rentee> GenerateRenteeList()
+        {
+            List<IPersistable> li = dc.GetEntities("RENTEE");
+            List<Rentee> renters = new List<Rentee>();
+            foreach (IPersistable persistable in li)
+            {
+                renters.Add(persistable as Rentee);
+            }
+            return renters;
+        }
+        private void BtnShowRentees_Click(object sender, RoutedEventArgs e)
+        {
+            DtgSelected.ItemsSource = GenerateRenteeList();
+            RentersSelected = true;
+            BikesSelected = false;
+        }
+
+        private void BtnShowBikes_Click(object sender, RoutedEventArgs e)
+        {
+            DtgSelected.ItemsSource = GenerateBikeList();
+            RentersSelected = false;
+            BikesSelected = true;
         }
 
         private void BtnShowOrders_Click(object sender, RoutedEventArgs e)
         {
-            List<IPersistable> li = dc.GetEntities("ORDER");
-            List<Order> orders = new List<Order>();
-            foreach (IPersistable persistable in li)
-            {
-                orders.Add(persistable as Order);
-            }
-            DtgSelected.ItemsSource = orders;
+            //Needs to launch the order window.
+            Orders dialog = new Orders();
+            dialog.Show();
         }
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
+            if (BikesSelected)
+            {
+                AddBike dialog = new AddBike();
+                dialog.ShowDialog();
+                DtgSelected.ItemsSource = GenerateBikeList();
+            }
+            else if (RentersSelected)
+            {
+                //launch renters window
+            }
+            else
+            {
+                MessageBox.Show("You must pick a list to show, before you can add to it");
+            }
+            
 
         }
 
@@ -71,18 +96,15 @@ namespace CybellesCykler
             {
                 try
                 {
-                    dc.DeleteEntity(DtgSelected.SelectedItem as Bike);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-            }
-            if (DtgSelected.SelectedItem is Order)
-            {
-                try
-                {
-                    dc.DeleteEntity(DtgSelected.SelectedItem as Order);
+                    if(dc.DeleteEntity(DtgSelected.SelectedItem as Bike))
+                    {
+                        MessageBox.Show("Item deleted successfully");
+                        DtgSelected.ItemsSource = GenerateBikeList();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Item could not be deleted");
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -93,7 +115,15 @@ namespace CybellesCykler
             {
                 try
                 {
-                    dc.DeleteEntity(DtgSelected.SelectedItem as Rentee);
+                    if (dc.DeleteEntity(DtgSelected.SelectedItem as Rentee))
+                    {
+                        MessageBox.Show("Item deleted successfully");
+                        DtgSelected.ItemsSource = GenerateRenteeList();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Item could not be deleted");
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -105,7 +135,20 @@ namespace CybellesCykler
 
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
-
+            if (BikesSelected)
+            {
+                EditBike dialog = new EditBike(DtgSelected.SelectedItem as Bike);
+                if (dialog.ShowDialog() == true)
+                {
+                    dc.UpdateEntity(dialog.bike);
+                    MessageBox.Show("Item updated successfully");
+                    DtgSelected.ItemsSource = GenerateBikeList();
+                }
+            }
+            if (RentersSelected)
+            {
+                //Launch edit renters window
+            }
         }
     }
 }

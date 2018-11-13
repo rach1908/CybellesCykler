@@ -170,7 +170,7 @@ namespace DataAccess
 
         public int NewBike(Bike bike)
         {
-            return ExecuteNonQuery("insert into Renters (BikeDescription, PricePerDay) " +
+            return ExecuteNonQuery("insert into Bikes (BikeDescription, PricePerDay) " +
                 $"values ('{bike.BikeDescription}', '{bike.PricePerDay}')");
         }
 

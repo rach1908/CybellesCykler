@@ -22,6 +22,7 @@ namespace CybellesCykler
         public Orders()
         {
             InitializeComponent();
+
         }
     }
 }
