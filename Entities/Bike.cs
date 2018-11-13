@@ -36,7 +36,6 @@ namespace Entities
             set { id = value; }
         }
 
-        public int ID { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         public string BikeDescription
         {

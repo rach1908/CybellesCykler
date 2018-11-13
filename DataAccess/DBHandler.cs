@@ -20,7 +20,18 @@ namespace DataAccess
             ds = ExecuteQuery("select * from Renters");
             foreach (DataRow r in ds.Tables[0].Rows)
             {
-                li.Add(new Rentee((int)r["ID"], (DateTime)r["RegisterDate"], (string)r["PhoneNumber"], (string)r["PhysAddress"], (string)r["Name"]));
+                //Check to make sure DateTime is not null
+                DateTime dt;     
+                if (r.IsNull("RegisterDate"))
+                {
+                    dt = DateTime.MinValue;
+                }
+                else
+                {
+                    dt = (DateTime)r["RegisterDate"];
+                }
+                
+                li.Add(new Rentee((int)r["ID"], dt, (string)r["PhoneNumber"], (string)r["PhysAddress"], (string)r["Name"]));
             }
             return li;
         }
@@ -32,7 +43,7 @@ namespace DataAccess
             ds = ExecuteQuery("select * from Bikes");
             foreach (DataRow r in ds.Tables[0].Rows)
             {
-                li.Add(new Bike((int)r["ID"], (string)r[";BikeDescription"], (decimal)r["PricePerDay"]));
+                li.Add(new Bike((int)r["ID"], (string)r["BikeDescription"], (decimal)r["PricePerDay"]));
             }
             return li;
         }
@@ -46,9 +57,28 @@ namespace DataAccess
             ds = ExecuteQuery("select * from Orders");
             foreach (DataRow r in ds.Tables[0].Rows)
             {
+                //Check to make sure DateTime is not null
+                DateTime dt1;
+                DateTime dt2;
+                if (r.IsNull("DeliveryDate"))
+                {
+                    dt1 = DateTime.MinValue;
+                }
+                else
+                {
+                    dt1 = (DateTime)r["DeliveryDate"];
+                }
+                if (r.IsNull("OrderDate"))
+                {
+                    dt2 = DateTime.MinValue;
+                }
+                else
+                {
+                    dt2 = (DateTime)r["OrderDate"];
+                }
                 Rentee ren = renters.Find(p => p.Id == (int)r["RenteeID"]);
                 Bike b = bikes.Find(p => p.Id == (int)r["BikeID"]);
-                li.Add(new Order((int)r["OrderID"], (DateTime)r["DeliveryDate"], (DateTime)r["RentDate"], ren, b));
+                li.Add(new Order((int)r["OrderID"], dt1, dt2, ren, b));
             }
             return li;
         }
@@ -64,7 +94,17 @@ namespace DataAccess
                 throw ;
             }
             DataRow r = ds.Tables[0].Rows[0];
-            Rentee ren = new Rentee((int)r["ID"], (DateTime)r["RegisterDate"], (string)r["PhoneNumber"], (string)r["PhysAddress"], (string)r["Name"]);
+            //Check to make sure DateTime is not null
+            DateTime dt;
+            if (r.IsNull("RegisterDate"))
+            {
+                dt = DateTime.MinValue;
+            }
+            else
+            {
+                dt = (DateTime)r["RegisterDate"];
+            }
+            Rentee ren = new Rentee((int)r["ID"], dt, (string)r["PhoneNumber"], (string)r["PhysAddress"], (string)r["Name"]);
             return ren;
         }
 
@@ -97,9 +137,28 @@ namespace DataAccess
             }
 
             DataRow r = ds.Tables[0].Rows[0];
+            //Check to make sure DateTime is not null
+            DateTime dt1;
+            DateTime dt2;
+            if (r.IsNull("DeliveryDate"))
+            {
+                dt1 = DateTime.MinValue;
+            }
+            else
+            {
+                dt1 = (DateTime)r["DeliveryDate"];
+            }
+            if (r.IsNull("OrderDate"))
+            {
+                dt2 = DateTime.MinValue;
+            }
+            else
+            {
+                dt2 = (DateTime)r["OrderDate"];
+            }
             Bike b = GetBike((int)r["BikeID"]);
             Rentee ren = GetRentee((int)r["RenteeID"]);
-            Order o = new Order((int)r["OrderID"], (DateTime)r["DeliveryDate"], (DateTime)r["RentDate"], ren, b);
+            Order o = new Order((int)r["OrderID"], dt1, dt2, ren, b);
             return o;
         }
 

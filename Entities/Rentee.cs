@@ -16,9 +16,15 @@ namespace Entities
 
         public Rentee(DateTime registerDate, string phoneNumber, string address, string name)
         {
-            RegisterDate = registerDate;
+            if (registerDate != null)
+            {
+                RegisterDate = registerDate;
+            }
             PhoneNumber = phoneNumber;
-            Address = address;
+            if (!string.IsNullOrEmpty(address))
+            {
+                Address = address;
+            }
             Name = name;
         }
 
