@@ -1,0 +1,22 @@
+﻿<Window x:Class="CybellesCykler.AddOrder"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CybellesCykler"
+        mc:Ignorable="d"
+        Title="Add Order" Height="350" Width="350">
+  <Grid>
+    <TextBox x:Name="tbxBikeID" HorizontalAlignment="Left" Height="23" Margin="153,177,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+    <Label Content="Rent Date:" HorizontalAlignment="Left" Margin="40,62,0,0" VerticalAlignment="Top"/>
+    <Label Content="Delivery Date:" HorizontalAlignment="Left" Margin="40,123,0,0" VerticalAlignment="Top"/>
+    <Label Content="BikeID:" HorizontalAlignment="Left" Margin="40,173,0,0" VerticalAlignment="Top"/>
+    <TextBox x:Name="tbxRenteeID" HorizontalAlignment="Left" Height="23" Margin="153,223,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+    <Label Content="RenteeID" HorizontalAlignment="Left" Margin="40,220,0,0" VerticalAlignment="Top"/>
+    <Button x:Name="btnAdd" Content="Add" HorizontalAlignment="Left" Margin="48,279,0,0" VerticalAlignment="Top" Width="75" Click="btnAdd_Click"/>
+    <Button x:Name="btnCancel" Content="Cancel" HorizontalAlignment="Left" Margin="198,279,0,0" VerticalAlignment="Top" Width="75"/>
+    <DatePicker x:Name="dpRentDate" HorizontalAlignment="Left" Margin="162,63,0,0" VerticalAlignment="Top"/>
+    <DatePicker x:Name="dpDeliveryDate" HorizontalAlignment="Left" Margin="162,123,0,0" VerticalAlignment="Top"/>
+
+  </Grid>
+</Window>

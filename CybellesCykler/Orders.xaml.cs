@@ -42,5 +42,34 @@ namespace CybellesCykler
             set { orderList = value; }
         }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            if (lbxOrders.SelectedItem == null)
+            {
+                MessageBox.Show("You must select and item to delete");
+            }
+            else
+            {
+                dc.DeleteEntity(lbxOrders.SelectedItem as Order);
+            }
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            if (lbxOrders.SelectedItem == null)
+            {
+                MessageBox.Show("You must select and item to edit");
+            }
+            else
+            {
+                //Launch EditOrder
+            }
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            AddOrder dialog = new AddOrder();
+            
+        }
     }
 }

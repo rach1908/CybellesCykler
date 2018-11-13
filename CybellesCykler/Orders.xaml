@@ -11,7 +11,7 @@
     <Label Content="Orders" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="138"/>
     <Button Content="Opret" HorizontalAlignment="Left" Margin="10,370,0,0" VerticalAlignment="Top" Width="59"/>
     <Button Content="Rediger" HorizontalAlignment="Left" Margin="80,370,0,0" VerticalAlignment="Top" Width="59"/>
-    <Button Content="Slet" HorizontalAlignment="Left" Margin="150,370,0,0" VerticalAlignment="Top" Width="59"/>
+    <Button Content="Slet" HorizontalAlignment="Left" Margin="150,370,0,0" VerticalAlignment="Top" Width="59" Click="Button_Click"/>
     <GroupBox Header="Information" HorizontalAlignment="Left" Height="377" Margin="214,36,0,0" VerticalAlignment="Top" Width="233">
       <Grid DataContext="{Binding Path=SelectedItem, ElementName=lbxOrders}" HorizontalAlignment="Left" Height="353" VerticalAlignment="Top" Width="212" Margin="0,0,-38.4,0">
         <Label x:Name="Lejer" Content="Lejer:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
