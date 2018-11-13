@@ -13,11 +13,11 @@ namespace Entities
         private int id;
         private BikeKind kind;
 
-
         public Bike(string bikeDescription, decimal pricePerDay)
         {
             BikeDescription = bikeDescription;
             PricePerDay = pricePerDay;
+            
         }
 
         public Bike(int id, string bikeDescription, decimal pricePerDay) : this(bikeDescription, pricePerDay)

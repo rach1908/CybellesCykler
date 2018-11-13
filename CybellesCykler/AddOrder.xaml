@@ -14,7 +14,7 @@
     <TextBox x:Name="tbxRenteeID" HorizontalAlignment="Left" Height="23" Margin="153,223,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
     <Label Content="RenteeID" HorizontalAlignment="Left" Margin="40,220,0,0" VerticalAlignment="Top"/>
     <Button x:Name="btnAdd" Content="Add" HorizontalAlignment="Left" Margin="48,279,0,0" VerticalAlignment="Top" Width="75" Click="btnAdd_Click"/>
-    <Button x:Name="btnCancel" Content="Cancel" HorizontalAlignment="Left" Margin="198,279,0,0" VerticalAlignment="Top" Width="75"/>
+    <Button x:Name="btnCancel" Content="Cancel" HorizontalAlignment="Left" Margin="198,279,0,0" VerticalAlignment="Top" Width="75" Click="btnCancel_Click"/>
     <DatePicker x:Name="dpRentDate" HorizontalAlignment="Left" Margin="162,63,0,0" VerticalAlignment="Top"/>
     <DatePicker x:Name="dpDeliveryDate" HorizontalAlignment="Left" Margin="162,123,0,0" VerticalAlignment="Top"/>
 
