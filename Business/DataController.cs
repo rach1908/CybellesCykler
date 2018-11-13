@@ -125,5 +125,61 @@ namespace Business
             }
             throw new Exception("Object is not a valid type (should be impossible)");
         }
+
+        public bool DeleteEntity(IPersistable entity)
+        {
+            if (entity is Bike)
+            {
+                try
+                {
+                    if (Handler.DeleteBike(entity as Bike) > 0)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                catch (Exception)
+                {
+
+                    throw new Exception("You cannot delete a bike while an order concerning the bike exsists!");
+                }
+               
+            }
+            if (entity is Rentee)
+            {
+                try
+                {
+                    if (Handler.DeleteRentee(entity as Rentee) > 0)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                catch (Exception)
+                {
+
+                    throw new Exception("You cannot delete a rentee while an order in their name exsists!");
+                }
+                
+            }
+            if (entity is Order)
+            {
+                if (Handler.DeleteOrder(entity as Order) > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            throw new Exception("Object is not a valid type (should be impossible)");
+        }
     }
 }

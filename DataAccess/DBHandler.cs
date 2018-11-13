@@ -199,5 +199,47 @@ namespace DataAccess
                 $"OrderDate = '{order.RentDate}, RenteeID = '{order.Rentee.Id}' " +
                 $"Where ID = {order.Id}");
         }
+
+        public int DeleteRentee(Rentee rentee)
+        {
+            List<Order> orders = AllOrders();
+            List<Rentee> renters = new List<Rentee>();
+            foreach (Order o in orders)
+            {
+                renters.Add(o.Rentee);
+            }
+            if (renters.Contains(rentee))
+            {
+                throw new Exception("You cannot delete a rentee while an order in their name exsists!");
+            }
+            else
+            {
+                return ExecuteNonQuery($"delete from renters where ID='{rentee.Id}';");
+            }
+        }
+
+        public int DeleteBike(Bike bike)
+        {
+            List<Order> orders = AllOrders();
+            List<Bike> bikes = new List<Bike>();
+            foreach (Order o in orders)
+            {
+                bikes.Add(o.Bike);
+            }
+            if (bikes.Contains(bike))
+            {
+                throw new Exception("You cannot delete a bike while an order concerning the bike exsists!");
+            }
+            else
+            {
+                return ExecuteNonQuery($"delete from bikes where ID='{bike.Id}';");
+            }
+        }
+
+        public int DeleteOrder(Order order)
+        {
+            int i = ExecuteNonQuery($"delete from orders where OrderID='{order.Id}';");
+            return i;
+        }
     }
 }

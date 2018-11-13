@@ -67,7 +67,40 @@ namespace CybellesCykler
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
-
+            if (DtgSelected.SelectedItem is Bike)
+            {
+                try
+                {
+                    dc.DeleteEntity(DtgSelected.SelectedItem as Bike);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+            if (DtgSelected.SelectedItem is Order)
+            {
+                try
+                {
+                    dc.DeleteEntity(DtgSelected.SelectedItem as Order);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+            if (DtgSelected.SelectedItem is Rentee)
+            {
+                try
+                {
+                    dc.DeleteEntity(DtgSelected.SelectedItem as Rentee);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+             
         }
 
         private void btnEdit_Click(object sender, RoutedEventArgs e)

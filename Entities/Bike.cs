@@ -49,6 +49,10 @@ namespace Entities
             set { pricePerDay = value; }
         }
 
+        public override string ToString()
+        {
+            return BikeDescription;
+        }
         int IPersistable.id { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
     }
 }
