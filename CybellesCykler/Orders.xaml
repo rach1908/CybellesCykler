@@ -6,26 +6,33 @@
         xmlns:local="clr-namespace:CybellesCykler"
         mc:Ignorable="d"
         Title="Orders" Height="454.4" Width="495.2">
-    <Grid>
-        <ListBox HorizontalAlignment="Left" Height="329" Margin="10,36,0,0" VerticalAlignment="Top" Width="199"/>
-        <Label Content="Orders" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="138"/>
-        <Button Content="Opret" HorizontalAlignment="Left" Margin="10,370,0,0" VerticalAlignment="Top" Width="59"/>
-        <Button Content="Rediger" HorizontalAlignment="Left" Margin="80,370,0,0" VerticalAlignment="Top" Width="59"/>
-        <Button Content="Slet" HorizontalAlignment="Left" Margin="150,370,0,0" VerticalAlignment="Top" Width="59"/>
-        <GroupBox Header="Information" HorizontalAlignment="Left" Height="377" Margin="214,36,0,0" VerticalAlignment="Top" Width="186">
-            <Grid HorizontalAlignment="Left" Height="353" VerticalAlignment="Top" Width="176" Margin="0,0,-3.2,0">
-                <Label x:Name="Lejer" Content="Lejer:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-                <Label x:Name="Lejer_Copy" Content="Udlånsdato:" HorizontalAlignment="Left" Margin="10,103,0,0" VerticalAlignment="Top"/>
-                <Label x:Name="Lejer_Copy1" Content="Afleveringsdato:" HorizontalAlignment="Left" Margin="10,134,0,0" VerticalAlignment="Top"/>
-                <Label x:Name="Lejer_Copy2" Content="Cykel: " HorizontalAlignment="Left" Margin="10,165,0,0" VerticalAlignment="Top"/>
-                <Label x:Name="Lejer_Copy3" Content="Adresse: " HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top"/>
-                <Label x:Name="Lejer_Copy4" Content="Telefon: " HorizontalAlignment="Left" Margin="10,72,0,0" VerticalAlignment="Top"/>
-                <Label x:Name="Lejer_Copy5" Content="Pris: " HorizontalAlignment="Left" Margin="10,196,0,0" VerticalAlignment="Top"/>
-                <Label x:Name="Lejer_Copy6" Content="Cykelbeskrivelse: " HorizontalAlignment="Left" Margin="10,227,0,0" VerticalAlignment="Top"/>
-                <TextBlock HorizontalAlignment="Left" Margin="10,257,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="86" Width="156" Text="En eller anden tekstblok med cykelbeskrivelse her"/>
-            </Grid>
-        </GroupBox>
-        <Button Content="Vejrudsigt" HorizontalAlignment="Left" Margin="10,394,0,0" VerticalAlignment="Top" Width="59"/>
+  <Grid>
+    <ListBox x:Name="lbxOrders" HorizontalAlignment="Left" Height="329" ItemsSource="{Binding Path=OrderList}" Margin="10,36,0,0" VerticalAlignment="Top" Width="199"/>
+    <Label Content="Orders" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="138"/>
+    <Button Content="Opret" HorizontalAlignment="Left" Margin="10,370,0,0" VerticalAlignment="Top" Width="59"/>
+    <Button Content="Rediger" HorizontalAlignment="Left" Margin="80,370,0,0" VerticalAlignment="Top" Width="59"/>
+    <Button Content="Slet" HorizontalAlignment="Left" Margin="150,370,0,0" VerticalAlignment="Top" Width="59"/>
+    <GroupBox Header="Information" HorizontalAlignment="Left" Height="377" Margin="214,36,0,0" VerticalAlignment="Top" Width="233">
+      <Grid DataContext="{Binding Path=SelectedItem, ElementName=lbxOrders}" HorizontalAlignment="Left" Height="353" VerticalAlignment="Top" Width="212" Margin="0,0,-38.4,0">
+        <Label x:Name="Lejer" Content="Lejer:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="Lejer_Copy" Content="Udlånsdato:" HorizontalAlignment="Left" Margin="10,103,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="Lejer_Copy1" Content="Afleveringsdato:" HorizontalAlignment="Left" Margin="10,134,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="Lejer_Copy2" Content="Cykel: " HorizontalAlignment="Left" Margin="10,165,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="Lejer_Copy3" Content="Adresse: " HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="Lejer_Copy4" Content="Telefon: " HorizontalAlignment="Left" Margin="10,72,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="Lejer_Copy5" Content="Pris: " HorizontalAlignment="Left" Margin="10,196,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="Lejer_Copy6" Content="Cykelbeskrivelse: " HorizontalAlignment="Left" Margin="10,227,0,0" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,257,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="86" Width="156" Text="{Binding Path=Bike.BikeDescription}"/>
+        <Label x:Name="lblRentee" Content="{Binding Path=Rentee.Name}" HorizontalAlignment="Left" Margin="117,10,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lblAddress" Content="{Binding Path=Rentee.Address}" HorizontalAlignment="Left" Margin="117,41,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lblPhone" Content="{Binding Path=Rentee.PhoneNumber}" HorizontalAlignment="Left" Margin="117,72,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lblRentDate" Content="{Binding Path=RentDate}" HorizontalAlignment="Left" Margin="117,103,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lblDeliveryDate" Content="{Binding Path=DeliveryDate}" HorizontalAlignment="Left" Margin="117,134,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lblBikeType" Content="{Binding Path=Bike.Kind}" HorizontalAlignment="Left" Margin="117,165,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lblPrice" Content="{Binding Path=Price}" HorizontalAlignment="Left" Margin="117,196,0,0" VerticalAlignment="Top"/>
+      </Grid>
+    </GroupBox>
+    <Button Content="Vejrudsigt" HorizontalAlignment="Left" Margin="10,394,0,0" VerticalAlignment="Top" Width="59"/>
 
-    </Grid>
+  </Grid>
 </Window>
