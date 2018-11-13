@@ -49,5 +49,81 @@ namespace Business
                     return null;
             }
         }
+
+        public bool NewEntity(IPersistable entity)
+        {
+            if (entity is Bike)
+            {
+                if (Handler.NewBike(entity as Bike)>0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            if (entity is Rentee)
+            {
+                if (Handler.NewRentee(entity as Rentee)>0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            if (entity is Order)
+            {
+                if (Handler.NewOrder(entity as Order)>0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            throw new Exception("Object is not a valid type (should be impossible)");
+        }
+
+        public bool UpdateEntity(IPersistable entity)
+        {
+            if (entity is Bike)
+            {
+                if (Handler.UpdateBike(entity as Bike) > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            if (entity is Rentee)
+            {
+                if (Handler.UpdateRentee(entity as Rentee) > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            if (entity is Order)
+            {
+                if (Handler.UpdateOrder(entity as Order) > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            throw new Exception("Object is not a valid type (should be impossible)");
+        }
     }
 }
